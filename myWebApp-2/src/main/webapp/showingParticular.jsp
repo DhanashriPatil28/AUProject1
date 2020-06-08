@@ -11,7 +11,7 @@
 	<form action="getCourse">
 		<label>Enter course ID: </label>
 		<input type="text" name="courseId">
-		<br>
+		<br><br>
 		<input type="submit">
 	</form>
 	
