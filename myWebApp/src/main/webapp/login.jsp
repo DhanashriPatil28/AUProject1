@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <meta name="google-signin-client_id" content="1035169042249-taca4m0o66a59fl0i38jt5sge7f5tdjm.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="1035169042249-c18krpa49nkhfgpblfhq33s6t4hg795g.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Google SignIn</title>
@@ -32,8 +32,8 @@
     <script>
         function onSignIn(googleUser) {
             // get user profile information
-            console.log(googleUser.getBasicProfile())
-            window.location.href="http://localhost:58714/home"; 
+            console.log("hh");
+            window.location.href="https://www.youtube.com/"; 
         }
     </script>
 

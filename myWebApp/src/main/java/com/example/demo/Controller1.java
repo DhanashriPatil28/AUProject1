@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class Controller1 {
 
-	@RequestMapping("login")
+	@RequestMapping("/")
 	public String login()
 	{
 		System.out.println("hiii");

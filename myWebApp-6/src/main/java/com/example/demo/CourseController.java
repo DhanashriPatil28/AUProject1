@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Controller;
+
 
 
 import antlr.collections.List;
@@ -25,6 +30,7 @@ public class CourseController {
 
 	@Autowired
 	private CourseRepo courseRepo;
+
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ArrayList<Course> index(){
@@ -35,12 +41,13 @@ public class CourseController {
 	}
 	
 	@PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void addCourse(@RequestBody Course course)
+	public Course addCourse(@RequestBody Course course)
 	{
 		System.out.println(course.getId());
 		System.out.println(course.getName());
 		System.out.println(course.getDescription());
 		courseRepo.save(course);
+		return course;
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -51,12 +58,13 @@ public class CourseController {
 	}
 	
 	@RequestMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void updateCourse(@RequestBody Course course)
+	public Course updateCourse(@RequestBody Course course)
 	{
 		System.out.println(course.getId());
 		System.out.println(course.getName());
 		System.out.println(course.getDescription());
 		courseRepo.save(course);
+		return course;
 	}
 	
 }
