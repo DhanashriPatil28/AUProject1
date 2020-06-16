@@ -38,7 +38,7 @@
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
-            window.location.href="http://localhost:58714/home"; 
+            window.location.href="http://localhost:4200/"; 
        }
     </script>
 

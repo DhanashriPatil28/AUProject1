@@ -1,89 +1,53 @@
 package com.example.demo;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 
-@Controller
+@RestController
+@RequestMapping("/courses")
 public class Controller1 {
 
 	@Autowired
-	CoursesRepo repo;
+	private CoursesRepo courseRepo;
+
 	
-	@Autowired
-	UserRepo repo1;
-	
-	@RequestMapping("login")
-	public String login()
-	{
-		return "login.jsp";
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	public ArrayList<Courses> index(){
+		Iterable<Courses> courseIterable = courseRepo.findAll();
+		ArrayList<Courses> courseList = new ArrayList<Courses>();
+		courseIterable.forEach(a -> courseList.add(a));
+		return courseList;
 	}
 	
-	@RequestMapping("/addUser")
-	public String addUser(User user)
+	@PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Courses addCourse(@RequestBody Courses course)
 	{
-		System.out.println("in user add");
-		repo1.save(user);
-		return "home.jsp";
+		System.out.println(course.getId());
+		System.out.println(course.getName());
+		System.out.println(course.getDescription());
+		courseRepo.save(course);
+		return course;
 	}
 	
-	@RequestMapping("home")
-	public String home()
+	@RequestMapping("/delete/{id}")
+	public void deleteCourse(@PathVariable int id)
 	{
-		return "home.jsp";
+		System.out.println("in spring");
+		courseRepo.deleteById(id);
 	}
 	
-	@RequestMapping("/goToAdd")
-	public String goToAdd()
+	@RequestMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Courses updateCourse(@RequestBody Courses course)
 	{
-		return "adding.jsp";
-	}
-	
-	@RequestMapping("/addCourse")
-	public String addCourse(Courses course)
-	{
-		repo.save(course);
-		return "home.jsp";
-	}
-	
-	@RequestMapping("/showingParticular")
-	public String showingParticular()
-	{
-		return "showingParticular.jsp";
-	}
-	
-	@RequestMapping("/getCourse")
-	public ModelAndView getCourse(@RequestParam int courseId)
-	{
-		ModelAndView mv = new ModelAndView("showCourse.jsp");
-		Courses course = repo.findById(courseId).orElse(new Courses());
-		mv.addObject("course", course);
-		return mv;
-	}
-	
-	@RequestMapping("/goToDelete")
-	public String goToDelete()
-	{
-		return "deleting.jsp";
-	}
-	
-	@RequestMapping("/deleteCourse")
-	public String deleteCourse(int courseId)
-	{
-		repo.deleteById(courseId);
-		return "home.jsp";
-	}
-	
-	@RequestMapping("/updatingCourse")
-	public String updatingCourse()
-	{
-		return "updating.jsp";
-	}
-	
-	@RequestMapping("/updateCourse")
-	public String updateCourse(Courses course)
-	{
-		repo.save(course);
-		return "home.jsp";
+		System.out.println(course.getId());
+		System.out.println(course.getName());
+		System.out.println(course.getDescription());
+		courseRepo.save(course);
+		return course;
 	}
 }

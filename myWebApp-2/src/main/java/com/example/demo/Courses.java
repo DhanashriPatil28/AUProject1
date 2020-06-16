@@ -5,33 +5,29 @@ import javax.persistence.*;
 public class Courses {
 
 	@Id
-	private int courseId;
-	private String courseName;
-	private String courseDescription;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public int id;
 	
-	public int getCourseId() {
-		return courseId;
-	}
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
-	}
-	public String getCourseName() {
-		return courseName;
-	}
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
-	public String getCourseDescription() {
-		return courseDescription;
-	}
-	public void setCourseDescription(String courseDescription) {
-		this.courseDescription = courseDescription;
-	}
+	private String name;
+	private String description;
 	
-	@Override
-	public String toString() {
-		return "Courses [courseId=" + courseId + ", courseName=" + courseName + ", courseDescription="
-				+ courseDescription + "]";
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	
