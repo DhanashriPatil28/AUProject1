@@ -12,10 +12,9 @@ import com.example.demo.controller.CategoryController;
 public class MyWebApp6Application {
 
 	public static void main(String[] args) {
-		final Logger l = Logger.getLogger(MyWebApp6Application.class.getName());
-		l.info("this is a info message");
-		
 		SpringApplication.run(MyWebApp6Application.class, args);
+		final Logger logger = Logger.getLogger(CategoryController.class.getName());
+		logger.info("Application Started Successfully");
 		System.out.println("Running...");
 	}
 	
